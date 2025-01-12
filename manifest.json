@@ -1,0 +1,14 @@
+{
+    "manifest_version": 3,
+    "name": "youtube - hide short videos",
+    "version": "0.0.1",
+    "description": "Hide short videos on youtube to avoid distractions:)",
+    "content_scripts": [
+      {
+        "matches": [
+            "https://*.youtube.com/*"
+        ],
+        "js": ["script.js"]
+      }
+    ]
+  }
