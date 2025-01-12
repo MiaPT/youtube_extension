@@ -34,8 +34,9 @@ setInterval(hideVids, 500)
 
 function getFrontPageVids(){
     const contents = document.getElementById("contents")
-    const videos = contents.querySelectorAll("#content")
-    return Array.from(videos.values())
+    const videos = Array.from(contents.querySelectorAll("#content").values())
+
+    return videos.map(v => v.parentElement)
 }
 
 function getWatchPageVids(){
