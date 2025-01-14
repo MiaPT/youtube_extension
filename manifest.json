@@ -3,6 +3,9 @@
     "name": "youtube - hide short videos",
     "version": "0.0.1",
     "description": "Hide short videos on youtube to avoid distractions:)",
+    "action": {
+        "default_popup": "popup.html"
+    },
     "content_scripts": [
       {
         "matches": [
