@@ -1,5 +1,18 @@
-let minimumLength = 4
-let oldMinimumLength = 4
+let minimumLength = 0
+let oldMinimumLength = 0
+chrome.storage.local.get(["minimumLength"]).then(res => {
+    minimumLength = res.minimumLength
+})
+
+chrome.storage.onChanged.addListener((changes) => {
+    if (changes.minimumLength){
+        oldMinimumLength = minimumLength
+        minimumLength = changes.minimumLength.newValue
+    }
+})
+
+setInterval(updateVideoVisibility, 500)
+
 
 function updateVideoVisibility(){
 
@@ -24,15 +37,6 @@ function updateVideoVisibility(){
     hideShortVids(videos)
 
 }
-
-
-chrome.runtime.onMessage.addListener((message) => {
-    if (message.minutes){
-        oldMinimumLength = minimumLength
-        minimumLength = message.minutes
-    }
-});
-
 
 
 function unhideVids(videos){
@@ -69,7 +73,6 @@ function hideShortVids(videos){
 }
 
 
-setInterval(updateVideoVisibility, 500)
 
 function getFrontPageVids(){
     const contents = document.getElementById("contents")

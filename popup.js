@@ -10,7 +10,5 @@ document.getElementById("minutes").addEventListener("keypress", function(event) 
 
 function saveTimeInput(){
     const minutes = document.getElementById("minutes").value;
-    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-        chrome.tabs.sendMessage(tabs[0].id, {minutes: minutes});
-    });
+    chrome.storage.local.set({minimumLength: minutes});
 }
