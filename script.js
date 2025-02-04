@@ -2,15 +2,12 @@ let minimumLength = 0
 let oldMinimumLength = 0
 chrome.storage.local.get(["minimumLength"]).then(res => {
     minimumLength = Number(res.minimumLength)
-    console.log(minimumLength)
 })
 
 chrome.storage.onChanged.addListener((changes) => {
     if (changes.minimumLength){
-        console.log("storage changed")
         oldMinimumLength = minimumLength
         minimumLength = Number(changes.minimumLength.newValue)
-        console.log(minimumLength)
     }
 })
 
