@@ -1,13 +1,16 @@
 let minimumLength = 0
 let oldMinimumLength = 0
 chrome.storage.local.get(["minimumLength"]).then(res => {
-    minimumLength = res.minimumLength
+    minimumLength = Number(res.minimumLength)
+    console.log(minimumLength)
 })
 
 chrome.storage.onChanged.addListener((changes) => {
     if (changes.minimumLength){
+        console.log("storage changed")
         oldMinimumLength = minimumLength
-        minimumLength = changes.minimumLength.newValue
+        minimumLength = Number(changes.minimumLength.newValue)
+        console.log(minimumLength)
     }
 })
 
@@ -35,7 +38,6 @@ function updateVideoVisibility(){
     }
     
     hideShortVids(videos)
-
 }
 
 
@@ -46,8 +48,8 @@ function unhideVids(videos){
             return null
         }
         const time = v.querySelector("#time-status").innerText.trim()
-
-        return time.length == 4 && Number(time[0]) >= minimumLength
+        
+        return Number(time.replace(":", "")) >= minimumLength
     })
     videos.forEach(v => {
         v.style.removeProperty('display')
@@ -64,7 +66,7 @@ function hideShortVids(videos){
         }
         const time = v.querySelector("#time-status").innerText.trim()
 
-        return time.length == 4 && Number(time[0]) < minimumLength
+        return Number(time.replace(":", "")) < minimumLength
     })
 
     shortVideos.forEach(v => {

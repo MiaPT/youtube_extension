@@ -2,8 +2,13 @@
     <link rel="stylesheet" href="popup.css">
     <body>
         <div>
-            <input type="number" id="minutes" placeholder="Enter number of minutes">
-            <button id="save">Save</button>
+            <form id="time-form">
+                <p>Minimum video length (minutes:seconds)</p>
+                <input type="number" id="minutes" min="0" max="59" placeholder="03">
+                <span>:</span>
+                <input type="number" id="seconds" min="0" max="59" placeholder="00">
+                <button id="save" type="submit">Save</button>
+            </form>
         </div>
     </body>
     <script src="popup.js"></script>

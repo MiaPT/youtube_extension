@@ -1,5 +1,8 @@
 div{
     width: 200px;
-    height: 100px;
+    height: 200px;
+}
 
+input[type=number]{
+    font-size: medium;
 }
